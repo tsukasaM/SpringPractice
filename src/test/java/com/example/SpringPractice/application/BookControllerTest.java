@@ -11,11 +11,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -63,6 +66,41 @@ public class BookControllerTest {
 
     //assert
     verify(bookService).getBook(1);
+  }
+
+  @Test
+  void test_POSTでリクエストして書籍情報が登録できる事() throws Exception {
+
+    //setup
+    Book book = Book.builder()
+                    .id(1)
+                    .borrower(null)
+                    .price(3000)
+                    .title("アジャイルサムライ")
+                    .url("https://hoge.com")
+                    .build();
+
+    BookPayload bookPayload = BookPayload.builder()
+                                         .id(1)
+                                         .borrower(null)
+                                         .price(3000)
+                                         .title("アジャイルサムライ")
+                                         .url("https://hoge.com")
+                                         .build();
+
+    ObjectMapper mapper = new ObjectMapper();
+    String requestJson = mapper.writeValueAsString(bookPayload);
+
+    doNothing().when(bookService).createBook(book);
+
+    //execute
+    mockMvc.perform(post("/v1/book/create")
+           .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+           .content(requestJson))
+           .andExpect(status().isNoContent());
+
+    //assert
+    verify(bookService).createBook(book);
   }
 
 
