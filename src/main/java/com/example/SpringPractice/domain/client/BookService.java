@@ -13,5 +13,10 @@ public interface BookService {
    */
   Book getBook(Integer id);
 
+  /**
+   * 書籍情報を登録します。
+   *
+   * @param book 登録したい書籍情報
+   */
   void createBook(Book book);
 }
