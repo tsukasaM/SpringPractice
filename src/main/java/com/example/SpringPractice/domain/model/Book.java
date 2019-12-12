@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 書籍情報のドメインモデルを表します。
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

@@ -12,6 +12,9 @@ import javax.transaction.Transactional;
 
 import static com.example.SpringPractice.common.exception.ErrorDetails.CREATE_BOOK_ERROR;
 
+/**
+ * {@link BookService} の実装クラスです。
+ */
 @Service
 @Transactional
 public class BookServiceImpl implements BookService {

@@ -3,6 +3,9 @@ package com.example.SpringPractice.domain.client;
 
 import com.example.SpringPractice.domain.model.Book;
 
+/**
+ * 書籍情報に対して操作を行うサービスクラスです。
+ */
 public interface BookService {
 
   /**

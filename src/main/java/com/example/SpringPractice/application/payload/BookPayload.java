@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 書籍情報を表現するペイロード。
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
