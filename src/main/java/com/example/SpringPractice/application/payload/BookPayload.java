@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.validation.constraints.NotNull;
 
 /**
  * 書籍情報を表現するペイロード。
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BookPayload {
 
+  @NotNull
   @JsonProperty("id")
   private Integer id;
 

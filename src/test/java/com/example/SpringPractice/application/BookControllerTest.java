@@ -103,5 +103,27 @@ public class BookControllerTest {
     verify(bookService).createBook(book);
   }
 
+  @Test
+  void test_ID無しで書籍情報を登録しようとするとApplicationExceptionが発生する事() throws Exception {
+
+    //setup
+    BookPayload bookPayload = BookPayload.builder()
+                                         .id(null)
+                                         .borrower(null)
+                                         .price(3000)
+                                         .title("アジャイルサムライ")
+                                         .url("https://hoge.com")
+                                         .build();
+
+    ObjectMapper mapper = new ObjectMapper();
+    String requestJson = mapper.writeValueAsString(bookPayload);
+
+    //execute
+    mockMvc.perform(post("/v1/book/create")
+        .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+        .content(requestJson))
+        .andExpect(status().isBadRequest());
+  }
+
 
 }

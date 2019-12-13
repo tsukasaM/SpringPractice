@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -47,7 +49,7 @@ public class BookController {
   @PostMapping(value = "/book/create",
               consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void createBook(@RequestBody BookPayload bookPayload) {
+  public void createBook(@RequestBody @Valid BookPayload bookPayload) {
 
     Book book = Book.builder()
                     .id(bookPayload.getId())
