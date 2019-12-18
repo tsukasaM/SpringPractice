@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("Controller に対するテスト")
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(BookController.class)
-public class BookControllerTest {
+class BookControllerTest {
 
   @Autowired
   MockMvc mockMvc;
@@ -95,7 +95,7 @@ public class BookControllerTest {
 
     //execute
     mockMvc.perform(post("/v1/book/create")
-           .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+           .contentType(MediaType.APPLICATION_JSON_VALUE)
            .content(requestJson))
            .andExpect(status().isNoContent());
 
@@ -120,7 +120,7 @@ public class BookControllerTest {
 
     //execute
     mockMvc.perform(post("/v1/book/create")
-        .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+        .contentType(MediaType.APPLICATION_JSON_VALUE)
         .content(requestJson))
         .andExpect(status().isBadRequest());
   }

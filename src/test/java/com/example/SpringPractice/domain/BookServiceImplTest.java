@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 @DisplayName("BookServiceのテスト")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class BookServiceImplTest {
+class BookServiceImplTest {
 
   @Autowired
   private BookService bookService;

@@ -47,7 +47,7 @@ public class BookController {
    * @param bookPayload 登録する書籍情報を表すペイロード
    */
   @PostMapping(value = "/book/create",
-              consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+              consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void createBook(@RequestBody @Valid BookPayload bookPayload) {
 
