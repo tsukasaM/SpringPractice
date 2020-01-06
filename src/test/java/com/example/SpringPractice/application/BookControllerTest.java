@@ -38,34 +38,32 @@ class BookControllerTest {
   void test_idを指定してGETでリクエストしたら該当する書籍が取得できる事() throws Exception {
 
     //setup
-//    Book book = Book.builder()
-//                    .id(1)
-//                    .borrower(null)
-//                    .price(3000)
-//                    .title("アジャイルサムライ")
-//                    .url("https://hoge.com")
-//                    .build();
-//
-//    BookPayload bookPayload = BookPayload.builder()
-//                                        .id(1)
-//                                        .borrower(null)
-//                                        .price(3000)
-//                                        .title("アジャイルサムライ")
-//                                        .url("https://hoge.com")
-//                                        .build();
-//
-//    ObjectMapper mapper = new ObjectMapper();
-//    String expected = mapper.writeValueAsString(bookPayload);
-//
-//    when(bookService.getBook(1)).thenReturn(book);
-//
-//    //execute
-//    mockMvc.perform(get("/v1/book/1"))
-//           .andExpect(status().isOk())
-//           .andExpect(content().json(expected));
-//
-//    //assert
-//    verify(bookService).getBook(1);
+    Book book = Book.builder()
+                    .borrower(null)
+                    .price(3000)
+                    .title("アジャイルサムライ")
+                    .url("https://hoge.com")
+                    .build();
+
+    BookPayload bookPayload = BookPayload.builder()
+                                        .borrower(null)
+                                        .price(3000)
+                                        .title("アジャイルサムライ")
+                                        .url("https://hoge.com")
+                                        .build();
+
+    ObjectMapper mapper = new ObjectMapper();
+    String expected = mapper.writeValueAsString(bookPayload);
+
+    when(bookService.getBook(1)).thenReturn(book);
+
+    //execute
+    mockMvc.perform(get("/v1/book/1"))
+           .andExpect(status().isOk())
+           .andExpect(content().json(expected));
+
+    //assert
+    verify(bookService).getBook(1);
   }
 
   @Test
