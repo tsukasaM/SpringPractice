@@ -3,7 +3,7 @@ package com.example.SpringPractice.domain.service;
 import com.example.SpringPractice.common.exception.ApplicationException;
 import com.example.SpringPractice.domain.client.BookService;
 import com.example.SpringPractice.domain.model.Book;
-import com.example.SpringPractice.integration.BookRepository;
+import com.example.SpringPractice.domain.repository.BookRepository;
 import com.example.SpringPractice.integration.Entity.BookEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,13 +30,13 @@ public class BookServiceImpl implements BookService {
 
     Book book = new Book();
 
-    bookRepository.findById(id).ifPresent(bookEntity -> {
-      book.setId(bookEntity.getId());
-      book.setTitle(bookEntity.getTitle());
-      book.setPrice(bookEntity.getPrice());
-      book.setUrl(bookEntity.getUrl());
-      book.setBorrower(bookEntity.getBorrower());
-    });
+//    bookRepository.findById(id).ifPresent(bookEntity -> {
+//      book.setId(bookEntity.getId());
+//      book.setTitle(bookEntity.getTitle());
+//      book.setPrice(bookEntity.getPrice());
+//      book.setUrl(bookEntity.getUrl());
+//      book.setBorrower(bookEntity.getBorrower());
+//    });
 
     return book;
   }
@@ -55,10 +55,10 @@ public class BookServiceImpl implements BookService {
                                       .url(book.getUrl())
                                       .build();
 
-    if (bookRepository.findById(book.getId()).isPresent()) {
-      throw new ApplicationException(CREATE_BOOK_ERROR);
-    } else {
+//    if (bookRepository.findById(book.getId()).isPresent()) {
+//      throw new ApplicationException(CREATE_BOOK_ERROR);
+//    } else {
       bookRepository.save(bookEntity);
-    }
+    //}
   }
 }

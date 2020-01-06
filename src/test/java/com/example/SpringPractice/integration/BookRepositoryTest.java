@@ -5,11 +5,11 @@
 
 package com.example.SpringPractice.integration;
 
+import com.example.SpringPractice.domain.repository.BookRepository;
 import com.example.SpringPractice.integration.Entity.BookEntity;
 import com.ninja_squad.dbsetup.Operations;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.destination.Destination;
-import com.ninja_squad.dbsetup.destination.DriverManagerDestination;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,13 +23,14 @@ import com.ninja_squad.dbsetup.operation.Operation;
 import javax.sql.DataSource;
 
 import static com.ninja_squad.dbsetup.Operations.deleteAllFrom;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class BookRepositoryTest {
 
   @Autowired
-  private BookMapper target;
+  private BookRepository target;
 
   @Autowired
   private DataSource dataSource;
@@ -61,7 +62,8 @@ public class BookRepositoryTest {
   @BeforeEach
   void setUp() {
     dbSetup(Operations.sequenceOf(
-        DELETE_ALL
+        DELETE_ALL,
+        INSERT_BOOK_DATA
     ));
   }
 
@@ -73,19 +75,26 @@ public class BookRepositoryTest {
   }
 
   @Test
-  void test_書籍情報が適切に取得できる事() {
+  void test_書籍情報が適切に保存できる事() {
 
    BookEntity bookEntity = BookEntity.builder()
-                                     .id(1)
                                      .borrower(null)
                                      .price(3000)
                                      .title("アジャイルサムライ")
                                      .url("https://hoge.com")
                                      .build();
 
-    target.save(bookEntity);
-    
+    BookEntity actual = target.save(bookEntity);
 
+    BookEntity expected = BookEntity.builder()
+                                    .id(3)
+                                    .borrower(null)
+                                    .price(3000)
+                                    .title("アジャイルサムライ")
+                                    .url("https://hoge.com")
+                                    .build();
+
+    assertThat(actual).isEqualTo(expected);
   }
 
 }
