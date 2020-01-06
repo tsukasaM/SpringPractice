@@ -97,4 +97,20 @@ public class BookRepositoryTest {
     assertThat(actual).isEqualTo(expected);
   }
 
+  @Test
+  void test_書籍情報が適切に取得できる事() {
+
+   BookEntity expected = BookEntity.builder()
+                                     .id(1)
+                                     .borrower("萬年")
+                                     .price(3000)
+                                     .title("アジャイルサムライ")
+                                     .url(null)
+                                     .build();
+
+    BookEntity actual = target.findById(1);
+
+    assertThat(actual).isEqualTo(expected);
+  }
+
 }

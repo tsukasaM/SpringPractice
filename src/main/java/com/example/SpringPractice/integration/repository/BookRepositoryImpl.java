@@ -32,10 +32,11 @@ public class BookRepositoryImpl implements BookRepository {
     return bookEntity;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public BookEntity findById(Integer id) {
-    return null;
+    return entityManager.find(BookEntity.class, id);
   }
-
-
 }
