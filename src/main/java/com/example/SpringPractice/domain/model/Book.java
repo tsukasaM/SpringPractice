@@ -14,8 +14,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Book {
 
-  private Integer id;
-
   private String borrower;
 
   private String title;

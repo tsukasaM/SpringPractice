@@ -69,6 +69,13 @@ class BookServiceImplTest {
 
     //setup
     BookEntity bookEntity = BookEntity.builder()
+                                      .borrower(null)
+                                      .price(3000)
+                                      .title("アジャイルサムライ")
+                                      .url("https://hoge.com")
+                                      .build();
+
+    BookEntity createdBookEntity = BookEntity.builder()
                                       .id(1)
                                       .borrower(null)
                                       .price(3000)
@@ -77,14 +84,13 @@ class BookServiceImplTest {
                                       .build();
 
     Book book = Book.builder()
-                   .id(1)
                    .borrower(null)
                    .price(3000)
                    .title("アジャイルサムライ")
                    .url("https://hoge.com")
                    .build();
 
-    when(bookRepository.save(bookEntity)).thenReturn(bookEntity);
+    when(bookRepository.save(bookEntity)).thenReturn(createdBookEntity);
 
     ////execute
     bookService.createBook(book);

@@ -48,7 +48,6 @@ public class BookServiceImpl implements BookService {
   public void createBook(Book book) {
 
     BookEntity bookEntity = BookEntity.builder()
-                                      .id(book.getId())
                                       .title(book.getTitle())
                                       .borrower(book.getBorrower())
                                       .price(book.getPrice())

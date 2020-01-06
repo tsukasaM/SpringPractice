@@ -52,7 +52,6 @@ public class BookController {
   public void createBook(@RequestBody @Valid BookPayload bookPayload) {
 
     Book book = Book.builder()
-                    .id(bookPayload.getId())
                     .title(bookPayload.getTitle())
                     .url(bookPayload.getUrl())
                     .price(bookPayload.getPrice())
