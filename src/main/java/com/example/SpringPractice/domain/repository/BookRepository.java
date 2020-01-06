@@ -13,4 +13,12 @@ public interface BookRepository {
    * @return 新規登録された書籍情報
    */
   BookEntity save(BookEntity bookEntity);
+
+  /**
+   * 指定したidの書籍情報を取得します。
+   *
+   * @param id 取得したい書籍情報のid
+   * @return 指定されたidの書籍情報
+   */
+  BookEntity findById(Integer id);
 }

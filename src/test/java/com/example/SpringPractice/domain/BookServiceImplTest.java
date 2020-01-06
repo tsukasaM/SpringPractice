@@ -13,12 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.Optional;
-
-import static com.example.SpringPractice.common.exception.ErrorDetails.CREATE_BOOK_ERROR;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -33,36 +28,33 @@ class BookServiceImplTest {
   @MockBean
   BookRepository bookRepository;
 
-//  @Test
-//  void test_本の情報を適切に取得できる事() {
-//
-//    //setup
-//    Optional<BookEntity> bookEntity = Optional.ofNullable(
-//        BookEntity.builder()
-//                  .id(1)
-//                  .borrower(null)
-//                  .price(3000)
-//                  .title("アジャイルサムライ")
-//                  .url("https://hoge.com")
-//                  .build()
-//    );
-//
-//    when(bookRepository.findById(1)).thenReturn(bookEntity);
-//
-//    Book expected = Book.builder()
-//                        .id(1)
-//                        .borrower(null)
-//                        .price(3000)
-//                        .title("アジャイルサムライ")
-//                        .url("https://hoge.com")
-//                        .build();
-//
-//    ////execute
-//    Book actual = bookService.getBook(1);
-//
-//    //assert
-//    assertEquals(expected, actual);
-//  }
+  @Test
+  void test_本の情報を適切に取得できる事() {
+
+    //setup
+    BookEntity bookEntity = BookEntity.builder()
+                                      .id(1)
+                                      .borrower(null)
+                                      .price(3000)
+                                      .title("アジャイルサムライ")
+                                      .url("https://hoge.com")
+                                      .build();
+
+    when(bookRepository.findById(1)).thenReturn(bookEntity);
+
+    Book expected = Book.builder()
+                        .borrower(null)
+                        .price(3000)
+                        .title("アジャイルサムライ")
+                        .url("https://hoge.com")
+                        .build();
+
+    ////execute
+    Book actual = bookService.getBook(1);
+
+    //assert
+    assertEquals(expected, actual);
+  }
 
   @Test
   void test_書籍情報を適切に登録できる事() {

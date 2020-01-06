@@ -28,17 +28,15 @@ public class BookServiceImpl implements BookService {
   @Override
   public Book getBook(Integer id) throws NullPointerException {
 
-    Book book = new Book();
 
-//    bookRepository.findById(id).ifPresent(bookEntity -> {
-//      book.setId(bookEntity.getId());
-//      book.setTitle(bookEntity.getTitle());
-//      book.setPrice(bookEntity.getPrice());
-//      book.setUrl(bookEntity.getUrl());
-//      book.setBorrower(bookEntity.getBorrower());
-//    });
+    BookEntity bookEntity = bookRepository.findById(id);
 
-    return book;
+    return Book.builder()
+               .borrower(bookEntity.getBorrower())
+               .price(bookEntity.getPrice())
+               .url(bookEntity.getUrl())
+               .title(bookEntity.getTitle())
+               .build();
   }
 
   /**
